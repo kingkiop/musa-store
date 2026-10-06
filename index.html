@@ -100,8 +100,10 @@
     .pdp-title{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--text);margin-bottom:8px}
     .pdp-price{font-size:1.2rem;color:var(--text-muted);margin-bottom:24px}
     .pdp-desc{font-size:.92rem;color:var(--text-muted);line-height:1.7;margin-bottom:32px}
-    .pdp-buy{width:100%;max-width:360px;padding:16px 0;background:#FFC439;color:var(--black);border:none;border-radius:var(--radius);font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:background .2s}
-    .pdp-buy:hover{background:#F0B830}
+    .pdp-buy{width:100%;padding:16px 0;background:#FFD400;color:var(--black);border:none;border-radius:var(--radius);font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:background .2s}
+    .pdp-buy:hover{background:#E6BF00}
+    .btn-buynow{background:#F5A623 !important;color:var(--black) !important}
+    .btn-buynow:hover{background:#E0921A !important}
     .pdp-meta{margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
     .pdp-meta p{font-size:.8rem;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:6px}
     .pdp-meta svg{width:14px;height:14px;flex-shrink:0}
@@ -134,8 +136,8 @@
     .order-item-qty{font-size:.78rem;color:var(--text-muted)}
     .order-row{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:8px;color:var(--text-muted)}
     .order-total{display:flex;justify-content:space-between;font-size:1rem;font-weight:600;color:var(--text);padding-top:12px;border-top:1px solid var(--border);margin-top:12px}
-    .checkout-pay{width:100%;padding:15px 0;margin-top:24px;background:#FFC439;color:var(--black);border:none;border-radius:var(--radius);font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.3px;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-    .checkout-pay:hover{background:#F0B830}
+    .checkout-pay{width:100%;padding:15px 0;margin-top:24px;background:#F5A623;color:var(--black);border:none;border-radius:var(--radius);font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.3px;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+    .checkout-pay:hover{background:#E0921A}
     .secure-note{text-align:center;font-size:.7rem;color:var(--text-muted);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:4px}
     .secure-note svg{width:12px;height:12px}
 
@@ -159,6 +161,30 @@
     .footer-logo-section img{width:320px;max-width:60vw;height:auto;filter:invert(1);opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;margin:0 auto}
     .footer-logo-section img.visible{opacity:1;transform:translateY(0)}
 
+    /* ========== SOCIAL PROOF ========== */
+    .social-proof{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .social-avatars{display:flex}
+    .social-avatars img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid var(--bg);margin-left:-8px}
+    .social-avatars img:first-child{margin-left:0}
+    .social-text{font-size:.78rem;color:var(--text-muted)}
+    .social-text strong{color:var(--text)}
+    .pulse-dot{display:inline-block;width:8px;height:8px;background:#3B82F6;border-radius:50%;margin-left:6px;vertical-align:middle;animation:pulse 3s ease-out infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}100%{box-shadow:0 0 0 8px rgba(59,130,246,0)}}
+
+    /* ========== ACCORDION ========== */
+    .pdp-accordions{margin-top:28px;border-top:1px solid var(--border)}
+    .accordion-item{border-bottom:1px solid var(--border)}
+    .accordion-header{display:flex;align-items:center;justify-content:space-between;padding:18px 0;cursor:pointer;user-select:none;transition:color .2s}
+    .accordion-header:hover{color:var(--text-muted)}
+    .accordion-title{font-size:.88rem;font-weight:600;color:var(--text)}
+    .accordion-icon{font-size:1.2rem;color:var(--text-muted);transition:transform .3s;font-weight:300}
+    .accordion-item.open .accordion-icon{transform:rotate(45deg)}
+    .accordion-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .accordion-item.open .accordion-body{max-height:500px}
+    .accordion-content{padding:0 0 20px;font-size:.85rem;color:var(--text-muted);line-height:1.7}
+    .accordion-content ul{margin:10px 0;padding-left:18px}
+    .accordion-content li{margin-bottom:6px}
+
     /* ========== CART PAGE ========== */
     .cart-page{max-width:800px;margin:0 auto;padding:40px 48px 100px}
     .cart-page h1{font-family:var(--heading);font-size:1.6rem;font-weight:500;margin-bottom:32px}
@@ -178,8 +204,8 @@
     .cart-item-remove:hover{color:var(--text)}
     .cart-footer{padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
     .cart-total{font-size:1.1rem;font-weight:700}
-    .cart-checkout-btn{padding:14px 40px;background:#FFC439;color:var(--black);border:none;border-radius:var(--radius);font-family:var(--sans);font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:8px}
-    .cart-checkout-btn:hover{background:#F0B830}
+    .cart-checkout-btn{padding:14px 40px;background:#F5A623;color:var(--black);border:none;border-radius:var(--radius);font-family:var(--sans);font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:8px}
+    .cart-checkout-btn:hover{background:#E0921A}
 
     /* ========== CONTACT SECTION ========== */
     .contact-section{max-width:640px;margin:0 auto;padding:80px 48px 100px;border-top:1px solid var(--border)}
@@ -328,9 +354,19 @@
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
           Back to Shop
         </div>
+
+        <!-- Social proof -->
+        <div class="social-proof">
+          <div class="social-avatars">
+            <img src="profile2.jpg" alt="">
+            <img src="profile1.jpg" alt="">
+          </div>
+          <span class="social-text"><strong>Join 500+ others</strong> who love MUSA <span class="pulse-dot"></span></span>
+        </div>
+
         <h1 class="pdp-title" id="pdpTitle"></h1>
         <p class="pdp-price" id="pdpPrice"></p>
-        <p class="pdp-desc" id="pdpDesc"></p>
+        <p class="pdp-desc">Made for people who get the reference.</p>
         <div class="qty-label">Quantity</div>
         <div class="qty-selector">
           <button class="qty-btn" onclick="changeQty(-1)">−</button>
@@ -339,12 +375,62 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:12px;max-width:360px">
           <button class="pdp-buy" onclick="addToCart()">Add to Cart</button>
-          <button class="pdp-buy" onclick="buyNow()" style="background:#FFC439;color:var(--black);display:flex;align-items:center;justify-content:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#003087" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.56A.859.859 0 0 1 5.79 1.84h6.527c2.168 0 3.69.576 4.526 1.713.393.534.643 1.137.742 1.792.104.685.057 1.5-.14 2.427l-.005.02v.04c-.33 1.681-.918 3.055-1.749 4.082-.771.953-1.752 1.657-2.916 2.092-.618.232-1.313.393-2.075.48-.31.036-.636.054-.976.054H8.41a1.074 1.074 0 0 0-1.06.907l-.79 4.99-.264 1.68a.559.559 0 0 1-.552.47l-.668-.038Z"/><path fill="#009cde" d="M18.452 7.532c-.044.26-.1.53-.168.81-.85 3.508-3.16 4.822-6.282 4.822h-1.59a.772.772 0 0 0-.762.652l-.814 5.16-.23 1.46a.406.406 0 0 0 .401.47h2.816a.679.679 0 0 0 .67-.572l.028-.143.53-3.365.034-.185a.679.679 0 0 1 .67-.572h.424c2.733 0 4.874-1.11 5.5-4.322.262-1.342.126-2.463-.566-3.25a2.694 2.694 0 0 0-.77-.567l.089.002Z"/></svg> Buy Now</button>
+          <button class="pdp-buy btn-buynow" onclick="buyNow()" style="display:flex;align-items:center;justify-content:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#003087" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.56A.859.859 0 0 1 5.79 1.84h6.527c2.168 0 3.69.576 4.526 1.713.393.534.643 1.137.742 1.792.104.685.057 1.5-.14 2.427l-.005.02v.04c-.33 1.681-.918 3.055-1.749 4.082-.771.953-1.752 1.657-2.916 2.092-.618.232-1.313.393-2.075.48-.31.036-.636.054-.976.054H8.41a1.074 1.074 0 0 0-1.06.907l-.79 4.99-.264 1.68a.559.559 0 0 1-.552.47l-.668-.038Z"/><path fill="#009cde" d="M18.452 7.532c-.044.26-.1.53-.168.81-.85 3.508-3.16 4.822-6.282 4.822h-1.59a.772.772 0 0 0-.762.652l-.814 5.16-.23 1.46a.406.406 0 0 0 .401.47h2.816a.679.679 0 0 0 .67-.572l.028-.143.53-3.365.034-.185a.679.679 0 0 1 .67-.572h.424c2.733 0 4.874-1.11 5.5-4.322.262-1.342.126-2.463-.566-3.25a2.694 2.694 0 0 0-.77-.567l.089.002Z"/></svg> Buy Now</button>
         </div>
-        <div class="pdp-meta">
-          <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg> Free shipping</p>
-          <p><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg> Secure checkout</p>
+
+        <!-- Accordion sections -->
+        <div class="pdp-accordions">
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="accordion-title">Description</span>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Refresh your home décor with a custom all-over print Throw Pillow Cover designed to showcase your unique style. Featuring edge-to-edge dye sublimation printing, every design is reproduced in vibrant, fade-resistant color with crisp detail from seam to seam.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="accordion-title">Material & Size</span>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Material: 100% polyester
+                <ul>
+                  <li>Made from soft, durable fabric that provides a smooth feel and is designed for everyday use.</li>
+                  <li>Perfect for living rooms, bedrooms, offices, dorms, or as a thoughtful personalized gift for any occasion.</li>
+                  <li>Pillow insert is not included.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="accordion-title">Shipping & Returns</span>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Total delivery time for a MUSA pillow typically ranges from 5 to 12 business days total, combining production and shipping phases.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="accordion-title">Care Instructions</span>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Machine wash separately: cold (max 30°C or 90°F), gentle cycle, mild detergent. Do not bleach. Tumble dry: low heat.
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -601,7 +687,6 @@
 
       document.getElementById('pdpTitle').textContent = currentProduct.name;
       document.getElementById('pdpPrice').textContent = '$' + currentProduct.price + '.00';
-      document.getElementById('pdpDesc').textContent = currentProduct.desc;
 
       renderMainImage(0);
       renderThumbs();
@@ -802,6 +887,12 @@
         else { card.style.display = 'none'; }
       });
       document.getElementById('productCount').textContent = visible + ' product' + (visible !== 1 ? 's' : '');
+    }
+
+    // ===== Accordion toggle =====
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      item.classList.toggle('open');
     }
 
     // ===== Splash loader =====
