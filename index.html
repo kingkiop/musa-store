@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MUSA — Premium Pillows</title>
-  <meta name="description" content="MUSA — Premium designer pillows. Free shipping on all orders.">
+  <title>BLUSH CULTURE — Premium Pillows</title>
+  <meta name="description" content="BLUSH CULTURE — Premium designer pillows. Free shipping on all orders.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
     .nav-link{font-size:.82rem;font-weight:500;color:var(--text);text-transform:uppercase;letter-spacing:1px;transition:opacity .2s;cursor:pointer}
     .nav-link:hover{opacity:.5}
     .nav-logo{cursor:pointer;display:flex;align-items:center;position:absolute;left:50%;transform:translateX(-50%)}
-    .nav-logo img{height:36px;width:auto}
+    .nav-logo img{height:48px;width:auto}
     .nav-cart{position:relative;cursor:pointer}
     .nav-cart svg{width:20px;height:20px}
     .cart-count{position:absolute;top:-6px;right:-8px;background:var(--black);color:#fff;font-size:.6rem;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
@@ -266,7 +266,7 @@
 
   <!-- SPLASH LOADER -->
   <div class="splash" id="splash">
-    <img src="logo.png" alt="MUSA">
+    <img src="logo.png" alt="BLUSH CULTURE">
   </div>
 
   <!-- NAVBAR -->
@@ -275,7 +275,7 @@
       <span class="nav-link" onclick="showPage('home')">Shop</span>
       <span class="nav-link" onclick="showPage('home'); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),100)">Contact</span>
     </div>
-    <span class="nav-logo" onclick="showPage('home')"><img src="logo.png" alt="MUSA"></span>
+    <span class="nav-logo" onclick="showPage('home')"><img src="logo.png" alt="BLUSH CULTURE"></span>
     <div class="nav-right">
       <span class="nav-link" onclick="showPage('home'); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),100)">About</span>
       <div class="nav-cart" onclick="showPage('cart')">
@@ -361,7 +361,7 @@
             <img src="profile2.jpg" alt="">
             <img src="profile1.jpg" alt="">
           </div>
-          <span class="social-text"><strong>Join 500+ others</strong> who love MUSA <span class="pulse-dot"></span></span>
+          <span class="social-text"><strong>Join 500+ others</strong> who love BLUSH CULTURE <span class="pulse-dot"></span></span>
         </div>
 
         <h1 class="pdp-title" id="pdpTitle"></h1>
@@ -414,7 +414,7 @@
             </div>
             <div class="accordion-body">
               <div class="accordion-content">
-                Total delivery time for a MUSA pillow typically ranges from 5 to 12 business days total, combining production and shipping phases.
+                Total delivery time for a BLUSH CULTURE pillow typically ranges from 5 to 12 business days total, combining production and shipping phases.
               </div>
             </div>
           </div>
@@ -510,7 +510,7 @@
   <footer class="footer">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">MUSA</div>
+        <div class="footer-brand">BLUSH CULTURE</div>
         <p class="footer-tagline">Premium pillows, delivered to your door.</p>
       </div>
       <div class="footer-col">
@@ -534,7 +534,7 @@
 
   <!-- FOOTER LOGO -->
   <div class="footer-logo-section">
-    <img src="logo.png" alt="MUSA" id="footerLogo">
+    <img src="logo.png" alt="BLUSH CULTURE" id="footerLogo">
   </div>
 
   <div class="toast" id="toast"></div>
@@ -762,9 +762,9 @@
         timestamp: new Date().toISOString()
       };
 
-      const orders = JSON.parse(localStorage.getItem('musa_orders') || '[]');
+      const orders = JSON.parse(localStorage.getItem('blush_orders') || '[]');
       orders.push(shipping);
-      localStorage.setItem('musa_orders', JSON.stringify(orders));
+      localStorage.setItem('blush_orders', JSON.stringify(orders));
 
       showToast('Processing order...');
 
