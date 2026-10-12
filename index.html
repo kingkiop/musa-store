@@ -86,7 +86,9 @@
     .pdp{max-width:1100px;margin:0 auto;padding:40px 48px 100px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
     .pdp-gallery{}
     .pdp-main-img{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--white);border:1px solid var(--border);margin-bottom:16px;touch-action:pan-y pinch-zoom;cursor:grab;user-select:none;-webkit-user-select:none;position:relative}
-    .pdp-main-img img,.pdp-main-img .placeholder-img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+    .pdp-main-img img,.pdp-main-img .placeholder-img{width:100%;height:100%;object-fit:cover;pointer-events:none;position:absolute;top:0;left:0}
+    .pdp-main-img img{opacity:0;transition:opacity .3s ease}
+    .pdp-main-img img.visible{opacity:1}
     .pdp-swipe-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
     .pdp-dot{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.2);transition:background .2s}
     .pdp-dot.active{background:rgba(0,0,0,.6)}
@@ -713,11 +715,37 @@
     }
 
     function renderMainImage(index) {
+      if (index === currentImageIndex && document.querySelector('#pdpMainImg img')) return;
+      const prev = currentImageIndex;
       currentImageIndex = index;
       const allImgs = getAllImages(currentProduct);
       const container = document.getElementById('pdpMainImg');
-      const dots = allImgs.map((_, i) => `<span class="pdp-dot${i === index ? ' active' : ''}"></span>`).join('');
-      container.innerHTML = `<img src="${allImgs[index]}" alt="${currentProduct.name}"><div class="pdp-swipe-hint">${dots}</div>`;
+
+      // Update dots
+      let dotsEl = container.querySelector('.pdp-swipe-hint');
+      if (!dotsEl) {
+        dotsEl = document.createElement('div');
+        dotsEl.className = 'pdp-swipe-hint';
+        container.appendChild(dotsEl);
+      }
+      dotsEl.innerHTML = allImgs.map((_, i) => `<span class="pdp-dot${i === index ? ' active' : ''}"></span>`).join('');
+
+      // Create new image
+      const newImg = document.createElement('img');
+      newImg.src = allImgs[index];
+      newImg.alt = currentProduct.name;
+      container.insertBefore(newImg, dotsEl);
+
+      // Fade in once loaded (or immediately if cached)
+      const fadeIn = () => {
+        requestAnimationFrame(() => { newImg.classList.add('visible'); });
+        // Remove old images after transition
+        const oldImgs = container.querySelectorAll('img:not(:last-of-type)');
+        setTimeout(() => { oldImgs.forEach(img => img.remove()); }, 320);
+      };
+      if (newImg.complete) fadeIn();
+      else newImg.onload = fadeIn;
+
       document.querySelectorAll('.pdp-thumb').forEach((t, i) => {
         t.classList.toggle('active', i === index);
       });
