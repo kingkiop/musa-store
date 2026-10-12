@@ -6,6 +6,23 @@
   <title>BLUSH CULTURE — Premium Pillows</title>
   <meta name="description" content="BLUSH CULTURE — Premium designer pillows. Free shipping on all orders.">
   <link rel="icon" href="logof.png" type="image/png">
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1404407415094574');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1404407415094574&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -583,6 +600,7 @@
         cart.push({ productIndex: products.indexOf(currentProduct), qty: qty });
       }
       updateCartBadge();
+      if(typeof fbq==='function') fbq('track','AddToCart',{content_name:currentProduct.name,content_ids:[currentProduct.slug],content_type:'product',value:currentProduct.price*qty,currency:'USD'});
       showToast(qty + 'x ' + currentProduct.name + ' added to cart');
       setTimeout(hideToast, 2000);
     }
@@ -708,6 +726,7 @@
 
       renderMainImage(0);
       renderThumbs();
+      if(typeof fbq==='function') fbq('track','ViewContent',{content_name:currentProduct.name,content_ids:[currentProduct.slug],content_type:'product',value:currentProduct.price,currency:'USD'});
       showPage('product');
     }
 
@@ -920,6 +939,7 @@
       }).catch(() => {});
 
       // Redirect to PayPal.me
+      if(typeof fbq==='function') fbq('track','InitiateCheckout',{value:total,currency:'USD',num_items:cart.reduce((s,c)=>s+c.qty,0)});
       showToast('Redirecting to PayPal...');
       setTimeout(() => {
         window.open('https://www.paypal.com/paypalme/josephstreak/' + total, '_blank');
