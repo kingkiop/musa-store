@@ -85,8 +85,11 @@
     /* ========== PAGE 2: PRODUCT DETAIL ========== */
     .pdp{max-width:1100px;margin:0 auto;padding:40px 48px 100px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
     .pdp-gallery{}
-    .pdp-main-img{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--white);border:1px solid var(--border);margin-bottom:16px}
-    .pdp-main-img img,.pdp-main-img .placeholder-img{width:100%;height:100%;object-fit:cover}
+    .pdp-main-img{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--white);border:1px solid var(--border);margin-bottom:16px;touch-action:pan-y pinch-zoom;cursor:grab;user-select:none;-webkit-user-select:none;position:relative}
+    .pdp-main-img img,.pdp-main-img .placeholder-img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+    .pdp-swipe-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
+    .pdp-dot{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.2);transition:background .2s}
+    .pdp-dot.active{background:rgba(0,0,0,.6)}
     .pdp-thumbs{display:flex;gap:10px}
     .pdp-thumb{width:72px;height:72px;border-radius:var(--radius);overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .2s;background:var(--white);flex-shrink:0}
     .pdp-thumb:hover,.pdp-thumb.active{border-color:var(--black)}
@@ -374,8 +377,8 @@
           <button class="qty-btn" onclick="changeQty(1)">+</button>
         </div>
         <div style="display:flex;flex-direction:column;gap:12px;max-width:360px">
-          <button class="pdp-buy" onclick="addToCart()">Add to Cart</button>
           <button class="pdp-buy btn-buynow" onclick="buyNow()" style="display:flex;align-items:center;justify-content:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#003087" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.56A.859.859 0 0 1 5.79 1.84h6.527c2.168 0 3.69.576 4.526 1.713.393.534.643 1.137.742 1.792.104.685.057 1.5-.14 2.427l-.005.02v.04c-.33 1.681-.918 3.055-1.749 4.082-.771.953-1.752 1.657-2.916 2.092-.618.232-1.313.393-2.075.48-.31.036-.636.054-.976.054H8.41a1.074 1.074 0 0 0-1.06.907l-.79 4.99-.264 1.68a.559.559 0 0 1-.552.47l-.668-.038Z"/><path fill="#009cde" d="M18.452 7.532c-.044.26-.1.53-.168.81-.85 3.508-3.16 4.822-6.282 4.822h-1.59a.772.772 0 0 0-.762.652l-.814 5.16-.23 1.46a.406.406 0 0 0 .401.47h2.816a.679.679 0 0 0 .67-.572l.028-.143.53-3.365.034-.185a.679.679 0 0 1 .67-.572h.424c2.733 0 4.874-1.11 5.5-4.322.262-1.342.126-2.463-.566-3.25a2.694 2.694 0 0 0-.77-.567l.089.002Z"/></svg> Buy Now</button>
+          <button class="pdp-buy" onclick="addToCart()">Add to Cart</button>
         </div>
 
         <!-- Accordion sections -->
@@ -556,11 +559,11 @@
        images: ['p1-a.png','p1-b.png','p1-c.png','p1-d.png','p1-e.png','p1-f.png']
     */
     const products = [
-      { name:'Cactus Jack Pillow', price:45, desc:'Album cover pillowcase featuring the Cactus Jack artwork.', mock:'cactus-mock.png', images:['cactus-1.png','cactus-2.png','cactus-3.png'], order:0, dateAdded:1, paypalId:'W8PZEJGQXT8PL' },
-      { name:'Graduation Pillow', price:45, desc:'Album cover pillowcase featuring the Graduation artwork.', mock:'graduation-mock.png', images:['graduation-1.png','graduation-2.png','graduation-3.png'], order:1, dateAdded:2, paypalId:'2TR9LLDK6KJ3J' },
-      { name:'IYRITL Pillow', price:45, desc:'Album cover pillowcase featuring the If You\'re Reading This It\'s Too Late artwork.', mock:'iyritl-mock.png', images:['iyritl-1.png','iyritl-2.png','iyritl-3.png'], order:2, dateAdded:3, paypalId:'D9X293K6L5Y34' },
-      { name:'CLB Pillow', price:45, desc:'Album cover pillowcase featuring the Certified Lover Boy artwork.', mock:'clb-mock.png', images:['clb-1.png','clb-2.png','clb-3.png'], order:3, dateAdded:4, paypalId:'L8JX2TFP47MZQ' },
-      { name:'For All the Dogs Pillow', price:45, desc:'Album cover pillowcase featuring the For All the Dogs artwork.', mock:'fatd-mock.png', images:['fatd-1.png','fatd-2.png','fatd-3.png'], order:4, dateAdded:5, paypalId:'DGH6BPQL6M2D8' },
+      { name:'Cactus Jack Pillow', slug:'cactus-jack', price:45, desc:'Album cover pillowcase featuring the Cactus Jack artwork.', mock:'cactus-mock.png', images:['cactus-1.png','cactus-2.png','cactus-3.png'], order:0, dateAdded:1, paypalId:'W8PZEJGQXT8PL' },
+      { name:'Graduation Pillow', slug:'graduation', price:45, desc:'Album cover pillowcase featuring the Graduation artwork.', mock:'graduation-mock.png', images:['graduation-1.png','graduation-2.png','graduation-3.png'], order:1, dateAdded:2, paypalId:'2TR9LLDK6KJ3J' },
+      { name:'IYRITL Pillow', slug:'iyritl', price:45, desc:'Album cover pillowcase featuring the If You\'re Reading This It\'s Too Late artwork.', mock:'iyritl-mock.png', images:['iyritl-1.png','iyritl-2.png','iyritl-3.png'], order:2, dateAdded:3, paypalId:'D9X293K6L5Y34' },
+      { name:'CLB Pillow', slug:'clb', price:45, desc:'Album cover pillowcase featuring the Certified Lover Boy artwork.', mock:'clb-mock.png', images:['clb-1.png','clb-2.png','clb-3.png'], order:3, dateAdded:4, paypalId:'L8JX2TFP47MZQ' },
+      { name:'For All the Dogs Pillow', slug:'fatd', price:45, desc:'Album cover pillowcase featuring the For All the Dogs artwork.', mock:'fatd-mock.png', images:['fatd-1.png','fatd-2.png','fatd-3.png'], order:4, dateAdded:5, paypalId:'DGH6BPQL6M2D8' },
     ];
 
     let currentProduct = null;
@@ -685,6 +688,7 @@
       document.getElementById('page-' + page).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'instant' });
       if (page === 'cart') renderCart();
+      if (page === 'home') history.replaceState(null, '', window.location.pathname);
     }
 
     // ===== Open product detail =====
@@ -693,6 +697,8 @@
       currentImageIndex = 0;
       qty = 1;
       document.getElementById('qtyInput').value = 1;
+      // Update URL for deep linking
+      history.replaceState(null, '', '#' + currentProduct.slug);
 
       document.getElementById('pdpTitle').textContent = currentProduct.name;
       document.getElementById('pdpPrice').textContent = '$' + currentProduct.price + '.00';
@@ -710,7 +716,8 @@
       currentImageIndex = index;
       const allImgs = getAllImages(currentProduct);
       const container = document.getElementById('pdpMainImg');
-      container.innerHTML = `<img src="${allImgs[index]}" alt="${currentProduct.name}">`;
+      const dots = allImgs.map((_, i) => `<span class="pdp-dot${i === index ? ' active' : ''}"></span>`).join('');
+      container.innerHTML = `<img src="${allImgs[index]}" alt="${currentProduct.name}"><div class="pdp-swipe-hint">${dots}</div>`;
       document.querySelectorAll('.pdp-thumb').forEach((t, i) => {
         t.classList.toggle('active', i === index);
       });
@@ -725,6 +732,48 @@
         </div>
       `).join('');
     }
+
+    // ===== Touch Swipe on Product Images =====
+    (function() {
+      const el = document.getElementById('pdpMainImg');
+      let startX = 0, startY = 0, dragging = false;
+
+      el.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        dragging = true;
+      }, { passive: true });
+
+      el.addEventListener('touchend', function(e) {
+        if (!dragging || !currentProduct) return;
+        dragging = false;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) < 40 || Math.abs(dy) > Math.abs(dx)) return; // too short or vertical
+        const allImgs = getAllImages(currentProduct);
+        const len = allImgs.length;
+        if (dx < 0) renderMainImage((currentImageIndex + 1) % len);      // swipe left → next
+        else        renderMainImage((currentImageIndex - 1 + len) % len); // swipe right → prev
+      }, { passive: true });
+
+      // Mouse drag for desktop
+      el.addEventListener('mousedown', function(e) {
+        startX = e.clientX;
+        dragging = true;
+        el.style.cursor = 'grabbing';
+      });
+      document.addEventListener('mouseup', function(e) {
+        if (!dragging || !currentProduct) return;
+        dragging = false;
+        el.style.cursor = 'grab';
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) < 40) return;
+        const allImgs = getAllImages(currentProduct);
+        const len = allImgs.length;
+        if (dx < 0) renderMainImage((currentImageIndex + 1) % len);
+        else        renderMainImage((currentImageIndex - 1 + len) % len);
+      });
+    })();
 
     // ===== Quantity =====
     function changeQty(delta) {
@@ -913,6 +962,18 @@
 
     // Init
     renderGrid();
+
+    // Deep link: open product if URL has #slug
+    (function() {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const idx = products.findIndex(p => p.slug === hash);
+        if (idx !== -1) {
+          // Wait for splash to finish, then open product
+          setTimeout(() => { openProduct(idx); }, 1900);
+        }
+      }
+    })();
   </script>
 
 </body>
