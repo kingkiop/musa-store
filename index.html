@@ -23,6 +23,8 @@
   src="https://www.facebook.com/tr?id=1244454046229505&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAsrrErgBWApWaANiFTOBaM1gLo7A_34t_hWdWod0x9cadqvo33gWkjALgSUXV23lFXaqpF6TDndj2iX4&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -399,6 +401,7 @@
         <div style="display:flex;flex-direction:column;gap:12px;max-width:360px">
           <button class="pdp-buy btn-buynow" onclick="buyNow()" style="display:flex;align-items:center;justify-content:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#003087" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.56A.859.859 0 0 1 5.79 1.84h6.527c2.168 0 3.69.576 4.526 1.713.393.534.643 1.137.742 1.792.104.685.057 1.5-.14 2.427l-.005.02v.04c-.33 1.681-.918 3.055-1.749 4.082-.771.953-1.752 1.657-2.916 2.092-.618.232-1.313.393-2.075.48-.31.036-.636.054-.976.054H8.41a1.074 1.074 0 0 0-1.06.907l-.79 4.99-.264 1.68a.559.559 0 0 1-.552.47l-.668-.038Z"/><path fill="#009cde" d="M18.452 7.532c-.044.26-.1.53-.168.81-.85 3.508-3.16 4.822-6.282 4.822h-1.59a.772.772 0 0 0-.762.652l-.814 5.16-.23 1.46a.406.406 0 0 0 .401.47h2.816a.679.679 0 0 0 .67-.572l.028-.143.53-3.365.034-.185a.679.679 0 0 1 .67-.572h.424c2.733 0 4.874-1.11 5.5-4.322.262-1.342.126-2.463-.566-3.25a2.694 2.694 0 0 0-.77-.567l.089.002Z"/></svg> Buy Now</button>
           <button class="pdp-buy" onclick="addToCart()">Add to Cart</button>
+          <p style="font-size:.78rem;color:var(--text-muted);text-align:center;margin:0">Join 500+ others who love BLUSH CULTURE</p>
         </div>
 
         <!-- Accordion sections -->
@@ -524,18 +527,37 @@
           <div id="chkItems"></div>
           <div class="order-row"><span>Items</span><span id="chkSubtotal">$0.00</span></div>
           <div class="order-row"><span>Shipping</span><span>Free</span></div>
+          <p style="font-size:.78rem;color:var(--text-muted);margin:12px 0 4px;text-align:center">Join 500+ others who love BLUSH CULTURE</p>
           <div class="order-total"><span>Order Total</span><span id="chkTotal">$0.00</span></div>
-          <button class="checkout-pay" onclick="handleCheckout()">
-            <span>Continue to PayPal</span>
-          </button>
+          <div id="paypal-btn-wrapper" style="margin-top:16px">
+            <div id="paypal-btn-container"></div>
+          </div>
           <div class="secure-note">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
             Secure checkout via PayPal
           </div>
+          <p id="formHint" style="font-size:.75rem;color:#cc0000;text-align:center;margin-top:8px">Fill in your delivery details above to unlock payment</p>
         </div>
       </div>
 
 
+    </div>
+  </div>
+
+  <!-- CONFIRMATION PAGE -->
+  <div class="page" id="page-confirm">
+    <div style="max-width:520px;margin:80px auto;text-align:center;padding:0 20px">
+      <div style="font-size:3rem;margin-bottom:16px">🎉</div>
+      <h1 style="font-family:var(--heading);font-size:1.8rem;font-weight:800;margin-bottom:8px">Congratulations!</h1>
+      <p style="font-size:1rem;color:var(--text);margin-bottom:6px">Your order has been placed successfully.</p>
+      <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:32px">You'll receive an email confirmation shortly. Thank you for joining the culture.</p>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:32px;text-align:left">
+        <div style="font-family:var(--heading);font-weight:700;font-size:.9rem;margin-bottom:12px">Order Details</div>
+        <div id="confirmItems" style="font-size:.85rem;color:var(--text);margin-bottom:12px"></div>
+        <div style="font-family:var(--heading);font-weight:700;font-size:1rem" id="confirmTotal"></div>
+      </div>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:24px">Join 500+ others who love BLUSH CULTURE</p>
+      <button class="pdp-buy" onclick="showPage('home')" style="max-width:260px;margin:0 auto">Continue Shopping</button>
     </div>
   </div>
 
@@ -682,6 +704,52 @@
       document.getElementById('chkItems').innerHTML = itemsHtml;
       document.getElementById('chkSubtotal').textContent = '$' + total.toFixed(2);
       document.getElementById('chkTotal').textContent = '$' + total.toFixed(2);
+      // Render PayPal button immediately
+      var pbc = document.getElementById('paypal-btn-container');
+      pbc.innerHTML = '';
+      var hint = document.getElementById('formHint');
+      if(hint) hint.style.display = '';
+
+      if (cart.length === 1 && cart[0].qty === 1 && typeof paypal !== 'undefined' && paypal.HostedButtons) {
+        var product = products[cart[0].productIndex];
+        paypal.HostedButtons({
+          hostedButtonId: product.paypalId,
+          onApprove: function() {
+            if (!validateCheckoutForm()) return;
+            var shipping = getShippingData();
+            if(typeof fbq==='function') fbq('track','Purchase',{value:product.price,currency:'USD',content_type:'product',contents:[{id:product.slug,quantity:1}]});
+            fetch('https://formsubmit.co/ajax/roobentzjoseph6@gmail.com', {
+              method:'POST',
+              headers:{'Content-Type':'application/json','Accept':'application/json'},
+              body:JSON.stringify({
+                _subject:'New Order — $'+product.price.toFixed(2)+' (PAID)',
+                'Items':'1x '+product.name+' ($'+product.price+')',
+                'Order Total':'$'+product.price.toFixed(2),
+                'Payment':'Completed via PayPal',
+                'Customer Name':shipping.firstName+' '+shipping.lastName,
+                'Customer Email':shipping.email,
+                'Customer Phone':shipping.phone||'Not provided',
+                'Full Address':shipping.address+(shipping.apt?', '+shipping.apt:'')+', '+shipping.city+', '+shipping.state+' '+shipping.zip,
+                'Order Date':new Date().toLocaleString()
+              })
+            }).catch(function(){});
+            document.getElementById('confirmItems').textContent = '1x ' + product.name;
+            document.getElementById('confirmTotal').textContent = 'Total: $' + product.price.toFixed(2);
+            cart=[]; updateCartBadge(); showPage('confirm');
+          }
+        }).render('#paypal-btn-container');
+      } else {
+        // Multi-item: show a pay button that validates then opens PayPal.me
+        pbc.innerHTML = '<button class="checkout-pay" onclick="handleCheckoutMulti()" style="width:100%;margin:0"><span>Pay with PayPal</span></button>';
+      }
+
+      // Add real-time form validation listeners
+      ['cFirstName','cLastName','cEmail','cAddress','cCity','cState','cZip'].forEach(function(id){
+        var el = document.getElementById(id);
+        el.removeEventListener('input', checkFormReady);
+        el.addEventListener('input', checkFormReady);
+      });
+
       showPage('checkout');
     }
 
@@ -836,70 +904,51 @@
       cartToCheckout();
     }
 
-    // ===== Handle checkout =====
-    function handleCheckout() {
+    // ===== Form validation =====
+    function validateCheckoutForm() {
       const fields = ['cFirstName','cLastName','cEmail','cAddress','cCity','cState','cZip'];
       let valid = true;
-
-      // Clear previous errors
       fields.forEach(id => document.getElementById(id).classList.remove('error'));
 
-      // Required check
       fields.forEach(id => {
         const input = document.getElementById(id);
         if (!input.value.trim()) { input.classList.add('error'); valid = false; }
       });
 
-      // Name fields: letters, spaces, hyphens, apostrophes only
       const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
       ['cFirstName','cLastName'].forEach(id => {
         const input = document.getElementById(id);
         if (input.value.trim() && !nameRegex.test(input.value.trim())) {
-          input.classList.add('error');
-          valid = false;
-          showToast('Name fields can only contain letters');
-          setTimeout(hideToast, 3000);
+          input.classList.add('error'); valid = false;
+          showToast('Name fields can only contain letters'); setTimeout(hideToast, 3000);
         }
       });
 
-      // Email format
       const email = document.getElementById('cEmail').value.trim();
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        document.getElementById('cEmail').classList.add('error');
-        valid = false;
-        showToast('Please enter a valid email');
-        setTimeout(hideToast, 3000);
+        document.getElementById('cEmail').classList.add('error'); valid = false;
+        showToast('Please enter a valid email'); setTimeout(hideToast, 3000);
       }
 
-      // City/State: letters only
       ['cCity','cState'].forEach(id => {
         const input = document.getElementById(id);
         if (input.value.trim() && !nameRegex.test(input.value.trim())) {
-          input.classList.add('error');
-          valid = false;
-          showToast('City and State can only contain letters');
-          setTimeout(hideToast, 3000);
+          input.classList.add('error'); valid = false;
+          showToast('City and State can only contain letters'); setTimeout(hideToast, 3000);
         }
       });
 
-      // Zip: numbers only, 5 digits
       const zip = document.getElementById('cZip').value.trim();
       if (zip && !/^\d{5}(-\d{4})?$/.test(zip)) {
-        document.getElementById('cZip').classList.add('error');
-        valid = false;
-        showToast('Please enter a valid zip code');
-        setTimeout(hideToast, 3000);
+        document.getElementById('cZip').classList.add('error'); valid = false;
+        showToast('Please enter a valid zip code'); setTimeout(hideToast, 3000);
       }
 
-      if (!valid) return;
+      return valid;
+    }
 
-      const total = getCartTotal();
-      const itemsList = cart.map(c => {
-        const p = products[c.productIndex];
-        return c.qty + 'x ' + p.name + ' ($' + (p.price * c.qty) + ')';
-      }).join(', ');
-
-      const shipping = {
+    function getShippingData() {
+      return {
         firstName: document.getElementById('cFirstName').value.trim(),
         lastName: document.getElementById('cLastName').value.trim(),
         email: document.getElementById('cEmail').value.trim(),
@@ -908,49 +957,65 @@
         apt: document.getElementById('cApt').value.trim(),
         city: document.getElementById('cCity').value.trim(),
         state: document.getElementById('cState').value.trim(),
-        zip: document.getElementById('cZip').value.trim(),
-        items: itemsList,
-        total: total,
-        timestamp: new Date().toISOString()
+        zip: document.getElementById('cZip').value.trim()
       };
+    }
 
-      const orders = JSON.parse(localStorage.getItem('blush_orders') || '[]');
-      orders.push(shipping);
-      localStorage.setItem('blush_orders', JSON.stringify(orders));
-
-      // Send order details via email
-      fetch('https://formsubmit.co/ajax/roobentzjoseph6@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: 'New Order — $' + total.toFixed(2),
-          'Items': itemsList,
-          'Order Total': '$' + total.toFixed(2),
-          'Customer Name': shipping.firstName + ' ' + shipping.lastName,
-          'Customer Email': shipping.email,
-          'Customer Phone': shipping.phone || 'Not provided',
-          'Shipping Address': shipping.address + (shipping.apt ? ', ' + shipping.apt : ''),
-          'City': shipping.city,
-          'State': shipping.state,
-          'Zip Code': shipping.zip,
-          'Full Address': shipping.address + (shipping.apt ? ', ' + shipping.apt : '') + ', ' + shipping.city + ', ' + shipping.state + ' ' + shipping.zip,
-          'Order Date': new Date().toLocaleString()
-        })
-      }).catch(() => {});
-
-      // Redirect to PayPal.me
-      if(typeof fbq==='function'){
-        fbq('track','InitiateCheckout',{value:total,currency:'USD',num_items:cart.reduce((s,c)=>s+c.qty,0)});
-        fbq('track','Purchase',{value:total,currency:'USD',content_type:'product',contents:cart.map(c=>({id:products[c.productIndex].slug,quantity:c.qty}))});
+    function checkFormReady() {
+      var fields = ['cFirstName','cLastName','cEmail','cAddress','cCity','cState','cZip'];
+      var allFilled = fields.every(function(id){ return document.getElementById(id).value.trim() !== ''; });
+      var hint = document.getElementById('formHint');
+      if (allFilled) {
+        if(hint) hint.style.display = 'none';
+      } else {
+        if(hint) hint.style.display = '';
       }
+    }
+
+    // ===== Handle checkout (overlay click — triggers validation errors) =====
+    function handleCheckout() {
+      validateCheckoutForm();
+    }
+
+    // ===== Handle multi-item checkout =====
+    function handleCheckoutMulti() {
+      if (!validateCheckoutForm()) return;
+      var shipping = getShippingData();
+      const total = getCartTotal();
+      const itemsList = cart.map(c => {
+        const p = products[c.productIndex];
+        return c.qty + 'x ' + p.name + ' ($' + (p.price * c.qty) + ')';
+      }).join(', ');
+
+      if(typeof fbq==='function') fbq('track','InitiateCheckout',{value:total,currency:'USD',num_items:cart.reduce((s,c)=>s+c.qty,0)});
+
+      // Multi-item or multi-qty → PayPal.me fallback
+      fetch('https://formsubmit.co/ajax/roobentzjoseph6@gmail.com', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          _subject:'New Order — $'+total.toFixed(2),
+          'Items':itemsList,
+          'Order Total':'$'+total.toFixed(2),
+          'Customer Name':shipping.firstName+' '+shipping.lastName,
+          'Customer Email':shipping.email,
+          'Customer Phone':shipping.phone||'Not provided',
+          'Full Address':shipping.address+(shipping.apt?', '+shipping.apt:'')+', '+shipping.city+', '+shipping.state+' '+shipping.zip,
+          'Order Date':new Date().toLocaleString()
+        })
+      }).catch(function(){});
+      if(typeof fbq==='function') fbq('track','Purchase',{value:total,currency:'USD',content_type:'product',contents:cart.map(function(c){return{id:products[c.productIndex].slug,quantity:c.qty}})});
+      var confirmItemsList = cart.map(function(c){ return c.qty + 'x ' + products[c.productIndex].name; }).join(', ');
       showToast('Redirecting to PayPal...');
-      setTimeout(() => {
-        window.open('https://www.paypal.com/paypalme/josephstreak/' + total, '_blank');
+      setTimeout(function(){
+        window.open('https://www.paypal.com/paypalme/josephstreak/'+total,'_blank');
         hideToast();
-        cart = [];
+        document.getElementById('confirmItems').textContent = confirmItemsList;
+        document.getElementById('confirmTotal').textContent = 'Total: $' + total.toFixed(2);
+        cart=[];
         updateCartBadge();
-        showPage('home');
-      }, 1000);
+        showPage('confirm');
+      },1000);
     }
 
     // ===== Contact form =====
