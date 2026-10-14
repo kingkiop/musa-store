@@ -728,6 +728,9 @@
       var hint = document.getElementById('formHint');
       if(hint) hint.style.display = '';
 
+      // Fire InitiateCheckout for all paths
+      if(typeof fbq==='function') fbq('track','InitiateCheckout',{value:total,currency:'USD',num_items:cart.reduce((s,c)=>s+c.qty,0)});
+
       if (cart.length === 1 && cart[0].qty === 1 && typeof paypal !== 'undefined' && paypal.HostedButtons) {
         var product = products[cart[0].productIndex];
         paypal.HostedButtons({
@@ -1013,7 +1016,7 @@
         return c.qty + 'x ' + p.name + ' ($' + (p.price * c.qty) + ')';
       }).join(', ');
 
-      if(typeof fbq==='function') fbq('track','InitiateCheckout',{value:total,currency:'USD',num_items:cart.reduce((s,c)=>s+c.qty,0)});
+      // InitiateCheckout already fired in cartToCheckout
 
       // Multi-item or multi-qty → PayPal.me fallback
       fetch('https://formsubmit.co/ajax/roobentzjoseph6@gmail.com', {
