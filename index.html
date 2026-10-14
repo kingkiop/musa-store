@@ -530,7 +530,7 @@
           <p style="font-size:.78rem;color:var(--text-muted);margin:12px 0 4px;text-align:center">Join 500+ others who love BLUSH CULTURE</p>
           <div class="order-total"><span>Order Total</span><span id="chkTotal">$0.00</span></div>
           <div id="paypal-btn-wrapper" style="margin-top:16px">
-            <div id="paypal-btn-container"></div>
+            <div id="paypal-btn-container" style="max-height:160px;overflow:hidden"></div>
           </div>
           <div class="secure-note">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
@@ -737,7 +737,12 @@
             document.getElementById('confirmTotal').textContent = 'Total: $' + product.price.toFixed(2);
             cart=[]; updateCartBadge(); showPage('confirm');
           }
-        }).render('#paypal-btn-container');
+        }).render('#paypal-btn-container').then(function(){
+          setTimeout(function(){
+            var container = document.getElementById('paypal-btn-container');
+            if(container) container.scrollTop = container.scrollHeight;
+          }, 1500);
+        });
       } else {
         // Multi-item: show a pay button that validates then opens PayPal.me
         pbc.innerHTML = '<button class="checkout-pay" onclick="handleCheckoutMulti()" style="width:100%;margin:0"><span>Pay with PayPal</span></button>';
