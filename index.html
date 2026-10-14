@@ -541,9 +541,8 @@
             <span class="social-text"><strong>Join 500+ others</strong> who love BLUSH CULTURE <span class="pulse-dot"></span></span>
           </div>
           <div class="order-total"><span>Order Total</span><span id="chkTotal">$0.00</span></div>
-          <div id="paypal-btn-wrapper" style="margin-top:16px;position:relative">
-            <div id="paypal-btn-overlay" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:10;cursor:pointer" onclick="handleCheckout()"></div>
-            <div id="paypal-btn-container" style="max-height:160px;overflow:hidden"></div>
+          <div id="paypal-btn-wrapper" style="margin-top:16px">
+            <div id="paypal-btn-container" style="max-height:160px;overflow:hidden;pointer-events:none;opacity:0.5"></div>
           </div>
           <div class="secure-note">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
@@ -989,13 +988,13 @@
       var fields = ['cFirstName','cLastName','cEmail','cAddress','cCity','cState','cZip'];
       var allFilled = fields.every(function(id){ return document.getElementById(id).value.trim() !== ''; });
       var hint = document.getElementById('formHint');
-      var overlay = document.getElementById('paypal-btn-overlay');
+      var pbc = document.getElementById('paypal-btn-container');
       if (allFilled) {
         if(hint) hint.style.display = 'none';
-        if(overlay) overlay.style.display = 'none';
+        if(pbc){ pbc.style.pointerEvents = 'auto'; pbc.style.opacity = '1'; }
       } else {
         if(hint) hint.style.display = '';
-        if(overlay) overlay.style.display = '';
+        if(pbc){ pbc.style.pointerEvents = 'none'; pbc.style.opacity = '0.5'; }
       }
     }
 
