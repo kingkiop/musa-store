@@ -401,7 +401,13 @@
         <div style="display:flex;flex-direction:column;gap:12px;max-width:360px">
           <button class="pdp-buy btn-buynow" onclick="buyNow()" style="display:flex;align-items:center;justify-content:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#003087" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.56A.859.859 0 0 1 5.79 1.84h6.527c2.168 0 3.69.576 4.526 1.713.393.534.643 1.137.742 1.792.104.685.057 1.5-.14 2.427l-.005.02v.04c-.33 1.681-.918 3.055-1.749 4.082-.771.953-1.752 1.657-2.916 2.092-.618.232-1.313.393-2.075.48-.31.036-.636.054-.976.054H8.41a1.074 1.074 0 0 0-1.06.907l-.79 4.99-.264 1.68a.559.559 0 0 1-.552.47l-.668-.038Z"/><path fill="#009cde" d="M18.452 7.532c-.044.26-.1.53-.168.81-.85 3.508-3.16 4.822-6.282 4.822h-1.59a.772.772 0 0 0-.762.652l-.814 5.16-.23 1.46a.406.406 0 0 0 .401.47h2.816a.679.679 0 0 0 .67-.572l.028-.143.53-3.365.034-.185a.679.679 0 0 1 .67-.572h.424c2.733 0 4.874-1.11 5.5-4.322.262-1.342.126-2.463-.566-3.25a2.694 2.694 0 0 0-.77-.567l.089.002Z"/></svg> Buy Now</button>
           <button class="pdp-buy" onclick="addToCart()">Add to Cart</button>
-          <p style="font-size:.78rem;color:var(--text-muted);text-align:center;margin:0">Join 500+ others who love BLUSH CULTURE</p>
+          <div class="social-proof" style="justify-content:center;margin:4px 0 0">
+            <div class="social-avatars">
+              <img src="profile2.jpg" alt="">
+              <img src="profile1.jpg" alt="">
+            </div>
+            <span class="social-text"><strong>Join 500+ others</strong> who love BLUSH CULTURE <span class="pulse-dot"></span></span>
+          </div>
         </div>
 
         <!-- Accordion sections -->
@@ -527,9 +533,16 @@
           <div id="chkItems"></div>
           <div class="order-row"><span>Items</span><span id="chkSubtotal">$0.00</span></div>
           <div class="order-row"><span>Shipping</span><span>Free</span></div>
-          <p style="font-size:.78rem;color:var(--text-muted);margin:12px 0 4px;text-align:center">Join 500+ others who love BLUSH CULTURE</p>
+          <div class="social-proof" style="justify-content:center;margin:12px 0 4px">
+            <div class="social-avatars">
+              <img src="profile2.jpg" alt="">
+              <img src="profile1.jpg" alt="">
+            </div>
+            <span class="social-text"><strong>Join 500+ others</strong> who love BLUSH CULTURE <span class="pulse-dot"></span></span>
+          </div>
           <div class="order-total"><span>Order Total</span><span id="chkTotal">$0.00</span></div>
-          <div id="paypal-btn-wrapper" style="margin-top:16px">
+          <div id="paypal-btn-wrapper" style="margin-top:16px;position:relative">
+            <div id="paypal-btn-overlay" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:10;cursor:pointer" onclick="handleCheckout()"></div>
             <div id="paypal-btn-container" style="max-height:160px;overflow:hidden"></div>
           </div>
           <div class="secure-note">
@@ -556,7 +569,13 @@
         <div id="confirmItems" style="font-size:.85rem;color:var(--text);margin-bottom:12px"></div>
         <div style="font-family:var(--heading);font-weight:700;font-size:1rem" id="confirmTotal"></div>
       </div>
-      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:24px">Join 500+ others who love BLUSH CULTURE</p>
+      <div class="social-proof" style="justify-content:center;margin-bottom:24px">
+        <div class="social-avatars">
+          <img src="profile2.jpg" alt="">
+          <img src="profile1.jpg" alt="">
+        </div>
+        <span class="social-text"><strong>Join 500+ others</strong> who love BLUSH CULTURE <span class="pulse-dot"></span></span>
+      </div>
       <button class="pdp-buy" onclick="showPage('home')" style="max-width:260px;margin:0 auto">Continue Shopping</button>
     </div>
   </div>
@@ -970,10 +989,13 @@
       var fields = ['cFirstName','cLastName','cEmail','cAddress','cCity','cState','cZip'];
       var allFilled = fields.every(function(id){ return document.getElementById(id).value.trim() !== ''; });
       var hint = document.getElementById('formHint');
+      var overlay = document.getElementById('paypal-btn-overlay');
       if (allFilled) {
         if(hint) hint.style.display = 'none';
+        if(overlay) overlay.style.display = 'none';
       } else {
         if(hint) hint.style.display = '';
+        if(overlay) overlay.style.display = '';
       }
     }
 
